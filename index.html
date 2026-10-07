@@ -1,22 +1,521 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="km">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-      name="description"
-      content="Grade 12 Study Hub - Physics, Biology, English and Trigonometry"
-    />
+  <title>Grade 12 Study Hub</title>
 
-    <meta name="theme-color" content="#172033" />
+  <meta name="description"
+        content="មជ្ឈមណ្ឌលសិក្សាថ្នាក់ទី១២ - រូបវិទ្យា ជីវវិទ្យា អង់គ្លេស និងត្រីកោណមាត្រ">
 
-    <title>Grade 12 Study Hub</title>
-  </head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <body>
-    <div id="root"></div>
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
-    <script type="module" src="/main.jsx"></script>
-  </body>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --text: #172033;
+      --muted: #667085;
+      --background: #f6f8fc;
+      --white: #ffffff;
+      --border: #e8ecf3;
+    }
+
+    body {
+      font-family: "Kantumruy Pro", sans-serif;
+      background:
+        radial-gradient(circle at top left, #e9f3ff 0, transparent 35%),
+        radial-gradient(circle at top right, #f1eaff 0, transparent 35%),
+        var(--background);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ---------- HEADER ---------- */
+
+    header {
+      max-width: 1150px;
+      margin: auto;
+      padding: 28px 24px 10px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: #172033;
+      color: white;
+      font-size: 22px;
+      box-shadow: 0 8px 25px rgba(23, 32, 51, .15);
+    }
+
+    .nav-badge {
+      padding: 8px 15px;
+      border-radius: 30px;
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+      max-width: 900px;
+      margin: 75px auto 60px;
+      padding: 0 24px;
+      text-align: center;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 14px;
+      border-radius: 30px;
+      background: white;
+      border: 1px solid var(--border);
+      color: #596579;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 7vw, 68px);
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #2563eb, #7c3aed);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    /* ---------- CARDS ---------- */
+
+    .subjects {
+      max-width: 1150px;
+      margin: auto;
+      padding: 0 24px 70px;
+
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      min-height: 270px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      padding: 30px;
+      border-radius: 28px;
+
+      background: rgba(255,255,255,.9);
+      border: 1px solid var(--border);
+
+      text-decoration: none;
+      color: var(--text);
+
+      box-shadow: 0 10px 35px rgba(20, 30, 50, .05);
+
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      right: -65px;
+      top: -65px;
+      opacity: .12;
+      background: var(--accent);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 22px 50px rgba(20, 30, 50, .12);
+      border-color: var(--accent);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .icon {
+      width: 65px;
+      height: 65px;
+      display: grid;
+      place-items: center;
+
+      border-radius: 19px;
+      background: var(--soft);
+      font-size: 32px;
+    }
+
+    .arrow {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      background: #f5f6f9;
+      color: #7b8494;
+      font-size: 20px;
+
+      transition: .25s ease;
+    }
+
+    .card:hover .arrow {
+      background: var(--accent);
+      color: white;
+      transform: rotate(-45deg);
+    }
+
+    .card h2 {
+      margin-top: 28px;
+      font-size: 27px;
+    }
+
+    .card p {
+      margin-top: 7px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .card-footer {
+      margin-top: 25px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* ---------- CARD COLORS ---------- */
+
+    .physics {
+      --accent: #2563eb;
+      --soft: #eaf2ff;
+    }
+
+    .biology {
+      --accent: #16a34a;
+      --soft: #eaf9ef;
+    }
+
+    .english {
+      --accent: #7c3aed;
+      --soft: #f1ebff;
+    }
+
+    .math {
+      --accent: #ea580c;
+      --soft: #fff0e8;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      text-align: center;
+      padding: 25px 20px 35px;
+      color: #8992a3;
+      font-size: 13px;
+    }
+
+    /* ---------- MOBILE ---------- */
+
+    @media (max-width: 700px) {
+
+      header {
+        padding-top: 18px;
+      }
+
+      .nav-badge {
+        display: none;
+      }
+
+      .hero {
+        margin-top: 55px;
+        margin-bottom: 40px;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .subjects {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .card {
+        min-height: 240px;
+        padding: 24px;
+        border-radius: 24px;
+      }
+
+      .card h2 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <nav>
+      <div class="logo">
+        <div class="logo-icon">📚</div>
+        <span>Study Hub</span>
+      </div>
+
+      <div class="nav-badge">
+        ថ្នាក់ទី១២ • Bac II
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <div class="hero-label">
+      ✨ រៀនឆ្លាត • ត្រៀមប្រឡង
+    </div>
+
+    <h1>
+      មជ្ឈមណ្ឌលសិក្សា
+      <span class="gradient-text">ថ្នាក់ទី១២</span>
+    </h1>
+
+    <p>
+      ប្រមូលផ្តុំមេរៀន លំហាត់ និងការប្រឡង
+      នៅកន្លែងតែមួយ។ ជ្រើសរើសមុខវិជ្ជា
+      ដើម្បីចាប់ផ្តើមសិក្សា។
+    </p>
+
+  </section>
+
+
+  <!-- SUBJECT CARDS -->
+  <main class="subjects">
+
+    <!-- PHYSICS -->
+    <a
+      class="card physics"
+      href="https://salwebdev17.github.io/Physics-Bacll/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+
+      <div>
+        <div class="card-top">
+
+          <div class="icon">
+            ⚛️
+          </div>
+
+          <div class="arrow">
+            ↗
+          </div>
+
+        </div>
+
+        <h2>រូបវិទ្យា</h2>
+
+        <p>
+          មេរៀនរូបវិទ្យាថ្នាក់ទី១២
+          និងមេរៀនសម្រាប់ត្រៀមប្រឡងបាក់ឌុប។
+        </p>
+      </div>
+
+      <div class="card-footer">
+        <span>ចូលរៀន</span>
+        <span>Physics</span>
+      </div>
+
+    </a>
+
+
+    <!-- BIOLOGY -->
+    <a
+      class="card biology"
+      href="https://salwebdev17.github.io/Biology-Bacll/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+
+      <div>
+        <div class="card-top">
+
+          <div class="icon">
+            🧬
+          </div>
+
+          <div class="arrow">
+            ↗
+          </div>
+
+        </div>
+
+        <h2>ជីវវិទ្យា</h2>
+
+        <p>
+          សិក្សាជីវវិទ្យាតាមរយៈលំហាត់
+          និងសកម្មភាពអន្តរកម្ម។
+        </p>
+      </div>
+
+      <div class="card-footer">
+        <span>ចាប់ផ្តើម</span>
+        <span>Biology</span>
+      </div>
+
+    </a>
+
+
+    <!-- ENGLISH -->
+    <a
+      class="card english"
+      href="https://salwebdev17.github.io/English-Bacll/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+
+      <div>
+        <div class="card-top">
+
+          <div class="icon">
+            🇬🇧
+          </div>
+
+          <div class="arrow">
+            ↗
+          </div>
+
+        </div>
+
+        <h2>ភាសាអង់គ្លេស</h2>
+
+        <p>
+          វិញ្ញាសាអង់គ្លេសបាក់ឌុប
+          ពីឆ្នាំផ្សេងៗ និងលំហាត់បន្ថែម។
+        </p>
+      </div>
+
+      <div class="card-footer">
+        <span>មើលវិញ្ញាសា</span>
+        <span>English</span>
+      </div>
+
+    </a>
+
+
+    <!-- TRIGONOMETRY -->
+    <a
+      class="card math"
+      href="https://trigmaster-1.base44.app"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+
+      <div>
+        <div class="card-top">
+
+          <div class="icon">
+            📐
+          </div>
+
+          <div class="arrow">
+            ↗
+          </div>
+
+        </div>
+
+        <h2>ត្រីកោណមាត្រ</h2>
+
+        <p>
+          Quiz អន្តរកម្មសម្រាប់ហាត់
+          រូបមន្ត អត្តសញ្ញាណ និងសមីការត្រីកោណមាត្រ។
+        </p>
+      </div>
+
+      <div class="card-footer">
+        <span>ចាប់ផ្តើម Quiz</span>
+        <span>Math</span>
+      </div>
+
+    </a>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 • Grade 12 Study Hub
+    <br>
+    រៀនថ្ងៃនេះ ដើម្បីជោគជ័យថ្ងៃស្អែក 🎓
+  </footer>
+
+</body>
 </html>
