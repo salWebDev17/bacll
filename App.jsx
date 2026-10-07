@@ -44,8 +44,13 @@ const subjects = [
 ];
 
 function App() {
+  const openSubject = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <div className="app">
+      {/* Header */}
       <header className="header">
         <nav className="navbar">
           <div className="logo">
@@ -53,11 +58,15 @@ function App() {
             <span>Study Hub</span>
           </div>
 
-          <div className="badge">ថ្នាក់ទី១២ • Bac II</div>
+          <div className="badge">
+            ថ្នាក់ទី១២ • Bac II
+          </div>
         </nav>
       </header>
 
+      {/* Main */}
       <main>
+        {/* Hero */}
         <section className="hero">
           <div className="heroLabel">
             <span>✨</span>
@@ -66,7 +75,9 @@ function App() {
 
           <h1>
             មជ្ឈមណ្ឌលសិក្សា{" "}
-            <span className="gradientText">ថ្នាក់ទី១២</span>
+            <span className="gradientText">
+              ថ្នាក់ទី១២
+            </span>
           </h1>
 
           <p>
@@ -76,20 +87,30 @@ function App() {
           </p>
         </section>
 
+        {/* Cards */}
         <section className="subjects">
           {subjects.map((subject) => (
-            <a
+            <article
               key={subject.title}
-              href={subject.url}
-              target="_blank"
-              rel="noopener noreferrer"
               className={`subjectCard ${subject.className}`}
+              onClick={() => openSubject(subject.url)}
+              role="link"
+              tabIndex={0}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  openSubject(subject.url);
+                }
+              }}
             >
               <div>
                 <div className="cardTop">
-                  <div className="subjectIcon">{subject.icon}</div>
+                  <div className="subjectIcon">
+                    {subject.icon}
+                  </div>
 
-                  <div className="arrow">↗</div>
+                  <div className="arrow">
+                    ↗
+                  </div>
                 </div>
 
                 <h2>{subject.title}</h2>
@@ -99,16 +120,22 @@ function App() {
 
               <div className="cardFooter">
                 <span>{subject.action}</span>
-                <span>{subject.english}</span>
+
+                <span className="englishName">
+                  {subject.english}
+                </span>
               </div>
-            </a>
+            </article>
           ))}
         </section>
       </main>
 
+      {/* Footer */}
       <footer>
         <p>© 2026 • Grade 12 Study Hub</p>
-        <span>រៀនថ្ងៃនេះ ដើម្បីជោគជ័យថ្ងៃស្អែក 🎓</span>
+        <span>
+          រៀនថ្ងៃនេះ ដើម្បីជោគជ័យថ្ងៃស្អែក 🎓
+        </span>
       </footer>
     </div>
   );
