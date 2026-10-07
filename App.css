@@ -14,42 +14,51 @@
   --border: #e8ecf3;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Kantumruy Pro", sans-serif;
+
   background:
     radial-gradient(
-      circle at top left,
+      circle at 0% 0%,
       #e9f3ff 0,
       transparent 35%
     ),
     radial-gradient(
-      circle at top right,
+      circle at 100% 0%,
       #f1eaff 0,
       transparent 35%
     ),
     var(--background);
 
   color: var(--text);
+
   min-height: 100vh;
 }
 
-a {
-  color: inherit;
+button,
+a,
+article {
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* =========================
+/* ==============================
    APP
-========================= */
+============================== */
 
 .app {
   min-height: 100vh;
+
   display: flex;
   flex-direction: column;
 }
 
-/* =========================
+/* ==============================
    HEADER
-========================= */
+============================== */
 
 .header {
   width: 100%;
@@ -57,7 +66,9 @@ a {
 
 .navbar {
   max-width: 1150px;
+
   margin: auto;
+
   padding: 28px 24px 10px;
 
   display: flex;
@@ -68,6 +79,7 @@ a {
 .logo {
   display: flex;
   align-items: center;
+
   gap: 12px;
 
   font-size: 20px;
@@ -97,20 +109,24 @@ a {
 
   border-radius: 30px;
 
-  background: white;
+  background: rgba(255, 255, 255, 0.8);
+
   border: 1px solid var(--border);
 
   color: var(--muted);
+
   font-size: 13px;
 }
 
-/* =========================
+/* ==============================
    HERO
-========================= */
+============================== */
 
 .hero {
   max-width: 900px;
+
   margin: 75px auto 60px;
+
   padding: 0 24px;
 
   text-align: center;
@@ -118,17 +134,21 @@ a {
 
 .heroLabel {
   display: inline-flex;
+
   align-items: center;
+
   gap: 7px;
 
   padding: 7px 14px;
 
   border-radius: 30px;
 
-  background: white;
+  background: rgba(255, 255, 255, 0.9);
+
   border: 1px solid var(--border);
 
   color: #596579;
+
   font-size: 13px;
 
   margin-bottom: 20px;
@@ -136,7 +156,8 @@ a {
 
 .hero h1 {
   font-size: clamp(38px, 7vw, 68px);
-  line-height: 1.08;
+
+  line-height: 1.1;
 
   letter-spacing: -1.5px;
 
@@ -151,6 +172,7 @@ a {
   );
 
   -webkit-background-clip: text;
+
   background-clip: text;
 
   color: transparent;
@@ -158,20 +180,23 @@ a {
 
 .hero p {
   max-width: 650px;
+
   margin: auto;
 
   color: var(--muted);
 
   font-size: 17px;
+
   line-height: 1.8;
 }
 
-/* =========================
-   SUBJECT GRID
-========================= */
+/* ==============================
+   CARDS GRID
+============================== */
 
 .subjects {
   width: 100%;
+
   max-width: 1150px;
 
   margin: auto;
@@ -186,15 +211,16 @@ a {
   gap: 22px;
 }
 
-/* =========================
+/* ==============================
    CARD
-========================= */
+============================== */
 
 .subjectCard {
   --accent: #2563eb;
   --soft: #eaf2ff;
 
   position: relative;
+
   overflow: hidden;
 
   min-height: 270px;
@@ -202,14 +228,20 @@ a {
   padding: 30px;
 
   display: flex;
+
   flex-direction: column;
+
   justify-content: space-between;
 
-  text-decoration: none;
+  cursor: pointer;
 
-  background: rgba(255, 255, 255, 0.9);
+  user-select: none;
+
+  background:
+    rgba(255, 255, 255, 0.92);
 
   border: 1px solid var(--border);
+
   border-radius: 28px;
 
   box-shadow:
@@ -239,6 +271,12 @@ a {
   opacity: 0.12;
 
   pointer-events: none;
+
+  transition: transform 0.4s ease;
+}
+
+.subjectCard:hover::before {
+  transform: scale(1.3);
 }
 
 .subjectCard:hover {
@@ -250,13 +288,21 @@ a {
   border-color: var(--accent);
 }
 
-/* =========================
+.subjectCard:focus-visible {
+  outline: 3px solid var(--accent);
+
+  outline-offset: 4px;
+}
+
+/* ==============================
    CARD TOP
-========================= */
+============================== */
 
 .cardTop {
   display: flex;
+
   justify-content: space-between;
+
   align-items: flex-start;
 }
 
@@ -265,6 +311,7 @@ a {
   height: 65px;
 
   display: grid;
+
   place-items: center;
 
   border-radius: 19px;
@@ -272,6 +319,12 @@ a {
   background: var(--soft);
 
   font-size: 32px;
+
+  transition: transform 0.25s ease;
+}
+
+.subjectCard:hover .subjectIcon {
+  transform: scale(1.08) rotate(-3deg);
 }
 
 .arrow {
@@ -279,6 +332,7 @@ a {
   height: 42px;
 
   display: grid;
+
   place-items: center;
 
   border-radius: 50%;
@@ -294,19 +348,22 @@ a {
 
 .subjectCard:hover .arrow {
   background: var(--accent);
+
   color: white;
 
   transform: rotate(-45deg);
 }
 
-/* =========================
+/* ==============================
    CARD TEXT
-========================= */
+============================== */
 
 .subjectCard h2 {
   margin-top: 28px;
 
   font-size: 27px;
+
+  line-height: 1.3;
 }
 
 .subjectCard p {
@@ -315,29 +372,41 @@ a {
   color: var(--muted);
 
   font-size: 14px;
+
   line-height: 1.7;
+
+  max-width: 500px;
 }
 
-/* =========================
+/* ==============================
    CARD FOOTER
-========================= */
+============================== */
 
 .cardFooter {
   margin-top: 25px;
 
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
 
   color: var(--accent);
 
   font-size: 14px;
+
   font-weight: 600;
 }
 
-/* =========================
-   COLORS
-========================= */
+.englishName {
+  opacity: 0.65;
+
+  font-weight: 500;
+}
+
+/* ==============================
+   SUBJECT COLORS
+============================== */
 
 .physics {
   --accent: #2563eb;
@@ -359,9 +428,9 @@ a {
   --soft: #fff0e8;
 }
 
-/* =========================
+/* ==============================
    FOOTER
-========================= */
+============================== */
 
 footer {
   margin-top: auto;
@@ -377,11 +446,33 @@ footer {
   line-height: 1.8;
 }
 
-/* =========================
-   MOBILE
-========================= */
+footer p {
+  margin-bottom: 2px;
+}
 
-@media (max-width: 700px) {
+/* ==============================
+   TABLET
+============================== */
+
+@media (max-width: 800px) {
+  .subjects {
+    gap: 16px;
+  }
+
+  .subjectCard {
+    padding: 24px;
+  }
+
+  .subjectCard h2 {
+    font-size: 24px;
+  }
+}
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media (max-width: 650px) {
   .navbar {
     padding-top: 18px;
   }
@@ -392,11 +483,14 @@ footer {
 
   .hero {
     margin-top: 55px;
+
     margin-bottom: 40px;
   }
 
   .hero h1 {
     font-size: 42px;
+
+    letter-spacing: -1px;
   }
 
   .hero p {
@@ -405,29 +499,46 @@ footer {
 
   .subjects {
     grid-template-columns: 1fr;
+
     gap: 16px;
   }
 
   .subjectCard {
     min-height: 240px;
 
-    padding: 24px;
-
     border-radius: 24px;
-  }
-
-  .subjectCard h2 {
-    font-size: 24px;
   }
 }
 
-/* =========================
-   SMALL PHONES
-========================= */
+/* ==============================
+   SMALL PHONE
+============================== */
 
 @media (max-width: 400px) {
+  .logo {
+    font-size: 18px;
+  }
+
+  .logoIcon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .hero {
+    padding: 0 18px;
+  }
+
   .hero h1 {
     font-size: 36px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .subjects {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .subjectCard {
@@ -437,5 +548,7 @@ footer {
   .subjectIcon {
     width: 58px;
     height: 58px;
+
+    font-size: 28px;
   }
-    }
+}
