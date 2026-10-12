@@ -1,0 +1,10 @@
+{
+  "name": "My Website",
+  "short_name": "My Site",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "Bacll_logo_192x192.png"},
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "file_00000000865082068b343be0ca466452.png" }
+  ],
+  "start_url": "/",
+  "display": "standalone"
+}
